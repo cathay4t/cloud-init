@@ -277,6 +277,10 @@ class NetworkStateInterpreter(metaclass=CommandHandlerMeta):
         elif self._version == 2:
             self.parse_config_v2(skip_broken=skip_broken)
             self._parsed = True
+        elif self._version == 3:
+            # Version 3 is passing through
+            self._network_state = {"config": self._config}
+            self._parsed = True
 
     def parse_config_v1(self, skip_broken=True):
         for command in self._config:
@@ -1046,8 +1050,8 @@ def parse_net_config_data(net_config, skip_broken=True) -> NetworkState:
     state = None
     version = net_config.get("version")
     config = net_config.get("config")
-    if version == 2:
-        # v2 does not have explicit 'config' key so we
+    if version in [2, 3]:
+        # v2 and v3 do not have explicit 'config' key so we
         # pass the whole net-config as-is
         config = net_config
 

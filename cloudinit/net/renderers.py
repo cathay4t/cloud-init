@@ -13,6 +13,7 @@ from . import (
     openbsd,
     renderer,
     sysconfig,
+    nmpolicy,
 )
 
 NAME_TO_RENDERER = {
@@ -24,12 +25,14 @@ NAME_TO_RENDERER = {
     "networkd": networkd,
     "openbsd": openbsd,
     "sysconfig": sysconfig,
+    "nmpolicy": nmpolicy,
 }
 
 DEFAULT_PRIORITY = [
     "eni",
     "sysconfig",
     "netplan",
+    "nmpolicy",
     "network-manager",
     "freebsd",
     "netbsd",

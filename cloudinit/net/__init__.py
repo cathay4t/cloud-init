@@ -656,6 +656,9 @@ def extract_physdevs(netcfg):
         return _version_1(netcfg)
     elif version == 2:
         return _version_2(netcfg)
+    elif version == 3:
+        # Version 3 does not need to wait physical network
+        return []
 
     raise RuntimeError("Unknown network config version: %s" % version)
 
